@@ -1,0 +1,10 @@
+<h1>Welcome to Bookmark Manager</h1>
+<h1>Here are your links</h1>
+<ul id='links'>
+  <% @links.each do |link| %>
+    <li>
+      Title: <%= link.title %>
+      URL:   <%= link.url   %>
+    </li>
+  <% end %>
+</ul>
