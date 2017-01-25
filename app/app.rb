@@ -16,6 +16,17 @@ class BookmarkManager < Sinatra::Base
     redirect 'links'
   end
 
+  get '/links/delete' do
+    erb :'links/delete'
+  end
+
+  post '/links/to_delete' do
+    to_delete = Link.get(title: params[:title])
+    to_delete.destroy
+    #Link.destroy(title: params[:title])
+    redirect 'links'
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end

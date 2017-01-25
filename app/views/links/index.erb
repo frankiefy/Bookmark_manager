@@ -3,7 +3,7 @@
 <ul id='links'>
   <% @links.each do |link| %>
     <li>
-      Title: <%= link.title %>
+      Title: <%= link.title.capitalize %>
       URL:   <%= link.url   %>
     </li>
   <% end %>
