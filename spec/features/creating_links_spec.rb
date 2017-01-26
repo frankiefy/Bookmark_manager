@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 feature 'Creating new bookmarks' do
   scenario 'adding a new bookmark' do
     visit '/links/new'
