@@ -1,7 +1,6 @@
 ENV["RACK_ENV"] ||= "development"
 require 'sinatra/base'
-require_relative 'models/link'
-require_relative 'models/tag'
+require_relative 'data_mapper_setup'
 
 class BookmarkManager < Sinatra::Base
 
@@ -19,11 +18,15 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/links' do
-    Link.create(url: params[:url], title: params[:title])
-    Tag.create(tag: params[:tag])
+    link = Link.new(url: params[:url], title: params[:title])
+    tag = Tag.first_or_create(name: params[:tag])
+    link.tags << tag
+    link.save
     redirect 'links'
   end
 
+=begin
+this was just an attempt, not required yet
   get '/links/delete' do
     erb :'links/delete'
   end
@@ -34,6 +37,7 @@ class BookmarkManager < Sinatra::Base
     #Link.destroy(title: params[:title])
     redirect 'links'
   end
+=end
 
   # start the server if ruby file executed directly
   run! if app_file == $0
