@@ -18,4 +18,13 @@ feature 'Creating new bookmarks' do
     link = Link.first
     expect(link.tags.map(&:name)).to include('useful')
   end
+  scenario 'adding multiple tag' do
+    visit '/links/new'
+    fill_in :title, :with => 'Youtube'
+    fill_in :url, :with => 'www.youtube.com'
+    fill_in :tag, :with => 'videos fun'
+    click_button 'Create Bookmark'
+    link = Link.first
+    expect(link.tags.map(&:name)).to include('videos, fun')
+  end
 end
