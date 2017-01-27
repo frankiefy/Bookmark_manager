@@ -25,6 +25,6 @@ feature 'Creating new bookmarks' do
     fill_in :tag, :with => 'videos fun'
     click_button 'Create Bookmark'
     link = Link.first
-    expect(link.tags.map(&:name)).to include('videos, fun')
+    expect(link.tags.map(&:name)).to include('videos', 'fun')
   end
 end
