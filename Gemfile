@@ -11,6 +11,7 @@ gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'pg'
 gem 'rake'
+gem 'bcrypt'
 
 group :test do
   gem 'database_cleaner'
